@@ -3,32 +3,37 @@
 int main()
 {
   int charManager;
-  int workingNum = 0;
   int charCounter = 0;
-  int value = 0;
+  int errorCounter = 0;
   
   while((charManager = getchar()) != EOF)
     {
       charCounter++;
-      if (charManager >= '0' && charManager <= '9')
+      if (charManager != '.' && charManager > '9')
 	{
-	  workingNum = charManager - '0';
-	  value = value * 10;
-	  value = value + workingNum;
+	  putchar(charManager);
+          errorCounter++;
 	}
-      if (charManager != '.' || !(charManager >= '0' && charManager <= '9'))
+		
+      else
 	{
-          putchar(charManager);
+	  putchar(charManager);
 	}
-      else if (charManager == '\n' && charCounter == 82)
+      if (charManager == '\n' && charCounter != 82)
 	{
-	  printf("\nError\n");
+	  errorCounter++;
 	}
-      else if (charManager == '\n')
+      if (charManager == '\n')
 	{
+	  if (errorCounter > 0)
+	    {
+	      printf("Error\n");
+	      errorCounter = 0;
+	    }
 	  printf("\n");
 	  charCounter = 0;
 	}
     }
   return 0;
 }
+
