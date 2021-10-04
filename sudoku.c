@@ -9,6 +9,7 @@ int main()
   int charCounter = 0;
   int emptySpaces = 0;
   int errorCounter = 0;
+  int numCounter = 0;
   int sameNum = 0;
   
   while((charManager = getchar()) != EOF)
@@ -35,10 +36,15 @@ int main()
 	  sameNum = charManager;
 	  
 	}
-      if (sameNum == charManager && emptySpaces <= 9)
+      if (sameNum == '2' && emptySpaces <= 9)
+	{
+	  numCounter++;
+	}
+      if (numCounter > 2)
 	{
 	  errorCounter++;
 	}
+      
       if (charManager == '\n')
 	{
 	  if (errorCounter > 0)
@@ -51,6 +57,7 @@ int main()
 	}
       if (emptySpaces == 10)
 	{
+	  numCounter = 0;
 	  emptySpaces = 0;
 	}
     }
